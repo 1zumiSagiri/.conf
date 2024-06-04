@@ -67,7 +67,7 @@ fi
 [[ -n ${key[Down]} ]] && bindkey "${key[Down]}" down-line-or-search
 
 # Default prompt
-PS1="[%*] %n@%m %1~ %# "
+PS1="[%*] %n@%m %2~ %# "
 
 # Useful support for interacting with Terminal.app or other terminal programs
 [ -r "/etc/zshrc_$TERM_PROGRAM" ] && . "/etc/zshrc_$TERM_PROGRAM"
