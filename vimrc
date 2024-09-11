@@ -3,7 +3,6 @@ autocmd! bufwritepost .vimrc source ~/.vimrc
 nmap <F8> :TagbarToggle<CR>
 nmap <F7> :NERDTree<CR>
 au! BufNewFile,BufRead *.t,*.CPP setf cpp
-syntax on
 :set nu
 :set cursorline
 :syntax on
