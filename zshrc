@@ -3,6 +3,8 @@
 # Setup user specific overrides for this in ~/.zshrc. See zshbuiltins(1)
 # and zshoptions(1) for more details.
 
+source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
 # Correctly display UTF-8 with combining characters.
 if [[ "$(locale LC_CTYPE)" == "UTF-8" ]]; then
     setopt COMBINING_CHARS
@@ -67,10 +69,24 @@ fi
 [[ -n ${key[Down]} ]] && bindkey "${key[Down]}" down-line-or-search
 
 # Default prompt
-PS1="[%*] %n@%m %2~ %# "
+PS1="%F{%(?.green.red)}%(?.✔︎.✘)%f [%*] %F{green}%n%f@%F{cyan}%m%f %2~ %# "
 
-# Useful support for interacting with Terminal.app or other terminal programs
-[ -r "/etc/zshrc_$TERM_PROGRAM" ] && . "/etc/zshrc_$TERM_PROGRAM"
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+alias vi='vim'
 
-#use for macOS
-#export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+# cabal package install
+# ghcup install
+export PATH="$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH"
+PATH=$PATH:$HOME/bin
+
+#pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+#ruby env
+export GEM_HOME="$(gem env user_gemhome)"
+export PATH="$PATH:$GEM_HOME/bin"
+
+#ROCm
+export PATH=$PATH:/opt/rocm/bin
