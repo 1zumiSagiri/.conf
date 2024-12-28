@@ -80,7 +80,7 @@ export EDITOR=vim
 
 # cabal package install
 # ghcup install
-export PATH="$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH:$HOME/bin"
+export PATH="$HOME/.cabal/bin:$HOME/.local/bin:$HOME/.ghcup/bin:$PATH:$HOME/bin"
 
 #pyenv
 export PYENV_ROOT="$HOME/.pyenv"
