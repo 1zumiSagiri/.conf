@@ -76,11 +76,14 @@ PS1="%F{%(?.green.red)}%(?.✔︎.✘)%f [%*] %F{green}%n%f@%F{cyan}%m%f %2~ %# 
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 alias vi='vim'
-export EDITOR=vim
+alias emacs="emacs -nw"
+
+export PATH="$HOME/.local/bin:$PATH"
 
 # cabal package install
 # ghcup install
-export PATH="$HOME/.cabal/bin:$HOME/.local/bin:$HOME/.ghcup/bin:$PATH:$HOME/bin"
+export PATH="$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH"
+PATH=$PATH:$HOME/bin
 
 #pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -93,3 +96,4 @@ export PATH="$PATH:$GEM_HOME/bin"
 
 #ROCm
 export PATH=$PATH:/opt/rocm/bin
+
