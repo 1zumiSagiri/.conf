@@ -30,9 +30,10 @@ PS1="%F{%(?.green.red)}%(?.✔︎.✘)%f [%*] %F{green}%n%f@%F{cyan}%m%f %2~ %# 
 export XDG_DATA_HOME="$HOME/.local/share/"
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
-alias vi='vim'
+alias vi='nvim'
+alias vim='nvim'
 alias emacs="emacs -nw --no-splash"
-export EDITOR='vim'
+export EDITOR='nvim'
 if command -v kitten >/dev/null 2>&1; then
   alias ssh='kitten ssh'
   alias diff='kitten diff'
