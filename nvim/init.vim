@@ -41,6 +41,7 @@ call plug#begin()
    Plug 'dense-analysis/ale'
    Plug 'ocaml/vim-ocaml'
    Plug 'navarasu/onedark.nvim'
+   Plug 'lervag/vimtex'
 
 call plug#end()
 

@@ -31,6 +31,7 @@ call plug#begin()
    let g:ale_disable_lsp  =  1
    Plug 'dense-analysis/ale'
    Plug 'ocaml/vim-ocaml'
+   Plug 'lervag/vimtex'
 
 call plug#end()
 
