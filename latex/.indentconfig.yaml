@@ -1,2 +1,4 @@
+# ~/.indentconfig.yaml
+# Change $HOME below
 paths:
 - $HOME/.latexindent.yaml
