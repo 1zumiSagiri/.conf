@@ -1,3 +1,4 @@
+" ~/.vimrc
 autocmd! bufwritepost .vimrc source ~/.vimrc
 :set ttimeoutlen=0
 nmap <F8> :TagbarToggle<CR>
@@ -32,6 +33,7 @@ call plug#begin()
    Plug 'dense-analysis/ale'
    Plug 'ocaml/vim-ocaml'
    Plug 'lervag/vimtex'
+   let g:vimtex_quickfix_enabled = 0
 
 call plug#end()
 

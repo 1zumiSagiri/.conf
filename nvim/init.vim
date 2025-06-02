@@ -1,3 +1,4 @@
+" ~/.config/nvim/init.vim
 set nocompatible
 set clipboard=unnamedplus
 set number
@@ -42,6 +43,7 @@ call plug#begin()
    Plug 'ocaml/vim-ocaml'
    Plug 'navarasu/onedark.nvim'
    Plug 'lervag/vimtex'
+   let g:vimtex_quickfix_enabled = 0
 
 call plug#end()
 

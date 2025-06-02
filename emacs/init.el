@@ -1,3 +1,5 @@
+;; ~/.emacs.d/init.el
+
 ;; auto-load agda-mode for .agda and .lagda.md
 (setq auto-mode-alist
    (append
@@ -24,5 +26,3 @@
 ;; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3") ; see remark below
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
-
-
