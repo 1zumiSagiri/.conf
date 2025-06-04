@@ -35,6 +35,7 @@ call plug#begin()
    Plug 'lervag/vimtex'
    let g:vimtex_quickfix_enabled = 0
    let g:vimtex_syntax_conceal_disable = 1
+   Plug 'whonore/Coqtail'
 
 call plug#end()
 
@@ -97,3 +98,13 @@ vnoremap <C-x> "+d
 " Paste in normal and visual mode with Ctrl+V
 nnoremap <C-v> "+gP
 vnoremap <C-v> "+gP
+
+" Coqtail binding Alt + jkl
+function CoqtailHookDefineMappings()
+  imap <buffer> <M-j> <Plug>RocqNext
+  imap <buffer> <M-l> <Plug>RocqToLine
+  imap <buffer> <M-k> <Plug>RocqUndo
+  nmap <buffer> <M-j> <Plug>RocqNext
+  nmap <buffer> <M-l> <Plug>RocqToLine
+  nmap <buffer> <M-k> <Plug>RocqUndo
+endfunction
