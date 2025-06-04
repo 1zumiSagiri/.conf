@@ -44,6 +44,7 @@ call plug#begin()
    Plug 'navarasu/onedark.nvim'
    Plug 'lervag/vimtex'
    let g:vimtex_quickfix_enabled = 0
+   let g:vimtex_syntax_conceal_disable = 1
 
 call plug#end()
 

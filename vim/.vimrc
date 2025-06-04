@@ -34,6 +34,7 @@ call plug#begin()
    Plug 'ocaml/vim-ocaml'
    Plug 'lervag/vimtex'
    let g:vimtex_quickfix_enabled = 0
+   let g:vimtex_syntax_conceal_disable = 1
 
 call plug#end()
 
