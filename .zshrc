@@ -75,6 +75,15 @@ fi
 [[ -n ${key[Up]} ]] && bindkey "${key[Up]}" up-line-or-search
 [[ -n ${key[Down]} ]] && bindkey "${key[Down]}" down-line-or-search
 
+# Useful support for interacting with Terminal.app or other terminal programs
+[ -r "/etc/zshrc_$TERM_PROGRAM" ] && . "/etc/zshrc_$TERM_PROGRAM"
+
+#use for macOS
+export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
+PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+PATH="/opt/homebrew/opt/rustup/bin:$PATH"
+
 # Default prompt
 PS1="%F{%(?.green.red)}%(?.✔︎.✘)%f [%*] %F{green}%n%f@%F{cyan}%m%f %2~ %# "
 
