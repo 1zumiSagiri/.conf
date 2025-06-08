@@ -105,6 +105,9 @@ export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 # ghcup install
 PATH="$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH"
 
+# rustup install
+PATH="$HOME/.cargo/bin:$PATH"
+
 #agda latex env
 export Agda_datadir="$(agda --print-agda-data-dir)"
 
