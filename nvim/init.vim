@@ -41,7 +41,7 @@ call plug#begin()
    let g:ale_disable_lsp  = 1
    Plug 'dense-analysis/ale'
    Plug 'ocaml/vim-ocaml'
-   Plug 'navarasu/onedark.nvim'
+   Plug 'olimorris/onedarkpro.nvim'
    Plug 'lervag/vimtex'
    let g:vimtex_quickfix_enabled = 0
    let g:vimtex_syntax_conceal_disable = 1
