@@ -3,7 +3,6 @@
 # Setup user specific overrides for this in ~/.zshrc. See zshbuiltins(1)
 # and zshoptions(1) for more details.
 
-#for yazi
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
@@ -23,7 +22,6 @@ bindkey -M menuselect "$terminfo[kcbt]" reverse-menu-complete# Correctly display
 HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
 HISTSIZE=2000
 SAVEHIST=1000
-
 
 # Beep on error
 setopt BEEP
@@ -101,32 +99,32 @@ fi
 
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
-# cabal package install
-# ghcup install
+# cabal & ghcup
 PATH="$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH"
 
-# rustup install
+# rustup
 PATH="$HOME/.cargo/bin:$PATH"
 
-#agda latex env
+# agda latex
 export Agda_datadir="$(agda --print-agda-data-dir)"
 
-#pyenv
+# pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-#ruby env
+# ruby
 export GEM_HOME="$(gem env user_gemhome)"
 PATH="$GEM_HOME/bin:$PATH"
 
-#ROCm
+# ROCm
 PATH="/opt/rocm/bin:$PATH"
 
-# BEGIN opam configuration
-# This is useful if you're using opam as it adds:
-#   - the correct directories to the PATH
-#   - auto-completion for the opam binary
-# This section can be safely removed at any time if needed.
+# opam
 [[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null
-# END opam configuration
+
+# Lean4
+LEAN_VER=$(elan toolchain list 2>/dev/null | sed -n 's/.*leanprover\/lean4:\(v[0-9.]*\).*/\1/p')
+export LEAN_LIB_DIR="$([ -n "$LEAN_VER" ] && echo "$HOME/.elan/toolchains/leanprover--lean4---$LEAN_VER/lib/lean")"
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH+$LD_LIBRARY_PATH:}$LEAN_LIB_DIR
+export DYLD_LIBRARY_PATH=${DYLD_LIBRARY_PATH+$DYLD_LIBRARY_PATH:}$LEAN_LIB_DIR
