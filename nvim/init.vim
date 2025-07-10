@@ -46,6 +46,11 @@ call plug#begin()
    let g:vimtex_quickfix_enabled = 0
    let g:vimtex_syntax_conceal_disable = 1
    Plug 'whonore/Coqtail'
+   Plug 'neovim/nvim-lspconfig'
+   Plug 'nvim-lua/plenary.nvim'
+   Plug 'kana/vim-textobj-user'
+   Plug 'neovimhaskell/nvim-hs.vim'
+   Plug 'isovector/cornelis', { 'do': 'stack build', 'tag': '*' }
 
 call plug#end()
 
@@ -62,3 +67,9 @@ function CoqtailHookDefineMappings()
   nmap <buffer> <M-l> <Plug>RocqToLine
   nmap <buffer> <M-k> <Plug>RocqUndo
 endfunction
+
+" latex-unicoder
+nnoremap <nowait> <c-z> :call unicoder#start(0)<CR>
+inoremap <nowait> <c-z> <Esc>:call unicoder#start(1)<CR>
+vnoremap <nowait> <c-z> :<C-u>call unicoder#selection()<CR>
+nnoremap <c-x><c-z> <c-z>
