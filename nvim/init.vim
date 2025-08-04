@@ -16,6 +16,9 @@ set vb
 set mouse=a
 set ttimeoutlen=0
 
+filetype plugin on
+filetype indent on
+
 autocmd BufNewFile,BufRead *.t,*.CPP setfiletype cpp
 
 nmap <F8> :TagbarToggle<CR>
@@ -73,3 +76,7 @@ nnoremap <nowait> <c-z> :call unicoder#start(0)<CR>
 inoremap <nowait> <c-z> <Esc>:call unicoder#start(1)<CR>
 vnoremap <nowait> <c-z> :<C-u>call unicoder#selection()<CR>
 nnoremap <c-x><c-z> <c-z>
+
+" Merlin for OCaml
+let g:opamshare = substitute(system('opam var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
