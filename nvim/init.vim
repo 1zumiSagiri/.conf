@@ -45,10 +45,14 @@ call plug#begin()
    Plug 'dense-analysis/ale'
    Plug 'ocaml/vim-ocaml'
    Plug 'olimorris/onedarkpro.nvim'
+   Plug 'sheerun/vim-polyglot'
    Plug 'lervag/vimtex'
+   Plug 'joom/latex-unicoder.vim'
    let g:vimtex_quickfix_enabled = 0
    let g:vimtex_syntax_conceal_disable = 1
    Plug 'whonore/Coqtail'
+   " write require('lean').setup{ mappings = true } into ~/.config/nvim/plugin/lean.lua
+   Plug 'julian/lean.nvim', {'BufReadPre': '*.lean', 'BufNewFile': '*.lean'}
    Plug 'neovim/nvim-lspconfig'
    Plug 'nvim-lua/plenary.nvim'
    Plug 'kana/vim-textobj-user'
@@ -77,6 +81,5 @@ inoremap <nowait> <c-z> <Esc>:call unicoder#start(1)<CR>
 vnoremap <nowait> <c-z> :<C-u>call unicoder#selection()<CR>
 nnoremap <c-x><c-z> <c-z>
 
-" Merlin for OCaml
 let g:opamshare = substitute(system('opam var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
