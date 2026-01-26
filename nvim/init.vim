@@ -67,12 +67,12 @@ set rtp^="/Users/ruri/.opam/default/share/ocp-indent/vim"
 
 " Coqtail binding Alt + jkl
 function CoqtailHookDefineMappings()
-  imap <buffer> <M-j> <Plug>RocqNext
-  imap <buffer> <M-l> <Plug>RocqToLine
-  imap <buffer> <M-k> <Plug>RocqUndo
-  nmap <buffer> <M-j> <Plug>RocqNext
-  nmap <buffer> <M-l> <Plug>RocqToLine
-  nmap <buffer> <M-k> <Plug>RocqUndo
+  imap <buffer> <M-j> <Plug>RocqNext<C-o>:CoqJumpToEnd<CR>
+  imap <buffer> <M-l> <Plug>RocqToLine<C-o>:CoqJumpToEnd<CR>
+  imap <buffer> <M-k> <Plug>RocqUndo<C-o>:CoqJumpToEnd<CR>
+  nmap <buffer> <M-j> <Plug>RocqNext:CoqJumpToEnd<CR>
+  nmap <buffer> <M-l> <Plug>RocqToLine:CoqJumpToEnd<CR>
+  nmap <buffer> <M-k> <Plug>RocqUndo:CoqJumpToEnd<CR>
 endfunction
 
 " latex-unicoder
