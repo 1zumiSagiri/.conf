@@ -27,4 +27,3 @@ vim.keymap.set("n", "<leader>f", function()
         vim.notify("No formatter available for filetype: " .. ft, vim.log.levels.WARN)
     end
 end, { desc = "Format buffer" })
-

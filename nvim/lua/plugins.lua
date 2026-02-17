@@ -94,6 +94,10 @@ return {
     -- OCaml
     {
         "tarides/ocaml.nvim",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-telescope/telescope.nvim",
+        },
         config = function()
             require("ocaml").setup()
         end

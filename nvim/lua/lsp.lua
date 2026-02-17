@@ -25,8 +25,7 @@ local servers = {
     "clangd",
     "rust_analyzer",
     "gopls",
-    "tinymist",
-    "ocamllsp",
+    -- "ocamllsp", -- managed by ocaml.nvim
     "hls",
     "texlab"
 }
@@ -39,12 +38,12 @@ for _, server in ipairs(servers) do
 end
 
 vim.lsp.config("tinymist", {
-  cmd = { "tinymist" },
-  filetypes = { "typst" },
-  settings = {
-    formatterMode = "typstyle",
-  },
-  capabilities = capabilities,
+    cmd = { "tinymist" },
+    filetypes = { "typst" },
+    settings = {
+        formatterMode = "typstyle",
+    },
+    capabilities = capabilities,
 })
 
 vim.lsp.enable("tinymist")
