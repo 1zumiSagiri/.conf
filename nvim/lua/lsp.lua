@@ -25,7 +25,7 @@ local servers = {
     "clangd",
     "rust_analyzer",
     "gopls",
-    -- "ocamllsp", -- managed by ocaml.nvim
+    "ocamllsp",
     "hls",
     "texlab"
 }
