@@ -91,10 +91,12 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.pl
 alias vi='nvim'
 alias vim='nvim'
 alias emacs="emacs -nw --no-splash"
+alias ls='eza'
+alias cat='bat'
+alias diff='delta'
 export EDITOR='nvim'
 if command -v kitten >/dev/null 2>&1; then
   alias ssh='kitten ssh'
-  alias diff='kitten diff'
 fi
 
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
