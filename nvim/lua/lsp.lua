@@ -27,7 +27,8 @@ local servers = {
     "gopls",
     "ocamllsp",
     "hls",
-    "texlab"
+    "texlab",
+    "ty"
 }
 
 for _, server in ipairs(servers) do
