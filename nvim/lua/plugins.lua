@@ -1,140 +1,111 @@
-return {
+-- ===========================================================
+-- plugins.lua  (for Neovim 0.12 vim.pack)
+-- ===========================================================
 
-    -- =====================
-    -- Theme
-    -- =====================
-    {
-        "olimorris/onedarkpro.nvim",
-        priority = 1000,
-        config = function()
-            vim.cmd("colorscheme onedark")
-        end
+-- Treesitter nvim-treesitter
+vim.api.nvim_create_autocmd("PackChanged", {
+  callback = function(ev)
+    local name = ev.data.spec.name
+    local kind = ev.data.kind
+    if name == "nvim-treesitter" and (kind == "install" or kind == "update") then
+      if not ev.data.active then
+        vim.cmd.packadd("nvim-treesitter")
+      end
+      vim.cmd("TSUpdate")
+    end
+  end,
+})
+
+vim.pack.add({
+  -- Theme
+  "https://github.com/olimorris/onedarkpro.nvim",
+
+  -- Treesitter
+  { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
+
+  -- File tree
+  "https://github.com/nvim-tree/nvim-web-devicons",
+  "https://github.com/nvim-tree/nvim-tree.lua",
+
+  -- Telescope
+  "https://github.com/nvim-lua/plenary.nvim",
+  "https://github.com/nvim-telescope/telescope.nvim",
+
+  -- LSP
+  "https://github.com/neovim/nvim-lspconfig",
+
+  -- Completion
+  "https://github.com/hrsh7th/cmp-nvim-lsp",
+  "https://github.com/L3MON4D3/LuaSnip",
+  "https://github.com/hrsh7th/nvim-cmp",
+
+  -- Lean / Rocq
+  "https://github.com/julian/lean.nvim",
+  "https://github.com/whonore/Coqtail",
+
+  -- Typst
+  "https://github.com/chomosuke/typst-preview.nvim",
+
+  -- OCaml
+  "https://github.com/tarides/ocaml.nvim",
+
+  -- LaTeX
+  "https://github.com/lervag/vimtex",
+
+  -- Diagnostics
+  "https://github.com/folke/trouble.nvim",
+})
+
+-- ===========================================================
+-- Plugin configs
+-- ===========================================================
+
+-- Theme
+vim.cmd("colorscheme onedark")
+
+-- Treesitter
+local ok, ts_configs = pcall(require, "nvim-treesitter.configs")
+if ok then
+  ts_configs.setup({
+    ensure_installed = {
+      "lua", "cpp", "rust", "go", "typst",
+      "ocaml", "haskell", "latex",
     },
+    highlight = { enable = true },
+  })
+end
 
-    -- =====================
-    -- Treesitter
-    -- =====================
-    {
-        "nvim-treesitter/nvim-treesitter",
-        build = ":TSUpdate",
-        event = { "BufReadPost", "BufNewFile" },
-        config = function()
-            local ok, configs = pcall(require, "nvim-treesitter.configs")
-            if not ok then return end
+-- File tree
+require("nvim-tree").setup({})
+vim.keymap.set("n", "<C-n>", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle File Tree" })
 
-            configs.setup({
-                ensure_installed = {
-                    "lua",
-                    "cpp",
-                    "rust",
-                    "go",
-                    "typst",
-                    "ocaml",
-                    "haskell",
-                    "latex"
-                },
-                highlight = { enable = true },
-            })
-        end
+require("lsp")
+
+require("completion")
+
+-- OCaml
+require("ocaml").setup()
+
+-- VimTeX
+vim.g.vimtex_view_general_viewer = "okular"
+vim.g.vimtex_view_general_options = [[--unique file:@pdf\#src:@line@tex]]
+
+-- Trouble
+require("trouble").setup({
+  modes = {
+    diagnostics = {
+      auto_open = true,
+      auto_close = true,
     },
-
-    {
-        "nvim-tree/nvim-tree.lua",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
-        keys = {
-            { "<C-n>", "<cmd>NvimTreeToggle<cr>", desc = "Toggle File Tree" },
-        },
-        config = function()
-            require("nvim-tree").setup({})
-        end
+    test = {
+      mode = "diagnostics",
+      preview = {
+        type = "split",
+        relative = "win",
+        position = "right",
+        size = 0.3,
+      },
     },
+  },
+})
 
-    -- =====================
-    -- Telescope
-    -- =====================
-    {
-        "nvim-telescope/telescope.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
-    },
-
-    -- =====================
-    -- LSP
-    -- =====================
-    {
-        "neovim/nvim-lspconfig",
-        config = function()
-            require("lsp")
-        end
-    },
-
-    -- =====================
-    -- Completion
-    -- =====================
-    {
-        "hrsh7th/nvim-cmp",
-        dependencies = {
-            "hrsh7th/cmp-nvim-lsp",
-            "L3MON4D3/LuaSnip"
-        },
-        config = function()
-            require("completion")
-        end
-    },
-
-    -- Lean / Coq
-    { "julian/lean.nvim", ft = "lean" },
-    { "whonore/Coqtail",  ft = "coq" },
-
-    -- typst
-    {
-        "chomosuke/typst-preview.nvim",
-        ft = "typst",
-    },
-
-    -- OCaml
-    {
-        "tarides/ocaml.nvim",
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-            "nvim-telescope/telescope.nvim",
-        },
-        config = function()
-            require("ocaml").setup()
-        end
-    },
-
-    {
-        "lervag/vimtex",
-        lazy = false,
-        init = function()
-            vim.g.vimtex_view_general_viewer = "okular"
-            vim.g.vimtex_view_general_options = [[--unique file:@pdf\#src:@line@tex]]
-        end
-    },
-
-    -- =====================
-    -- Error diagnostics
-    -- =====================
-    {
-        "folke/trouble.nvim",
-        event = "LspAttach",
-        opts = {
-            modes = {
-                diagnostics = {
-                    auto_open = true,
-                    auto_close = true
-                },
-                test = {
-                    mode = "diagnostics",
-                    preview = {
-                        type = "split",
-                        relative = "win",
-                        position = "right",
-                        size = 0.3,
-                    },
-                },
-            },
-        },
-        cmd = { "Trouble" },
-    },
-}
