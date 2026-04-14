@@ -21,6 +21,18 @@ vim.lsp.config("lua_ls", {
 
 vim.lsp.enable("lua_ls")
 
+vim.lsp.config("pyrefly", {
+    settings = {
+        python = {
+            pyrefly = {
+                displayTypeErrors = 'force-on',
+            },
+        },
+    },
+})
+
+vim.lsp.enable("pyrefly")
+
 local servers = {
     "clangd",
     "rust_analyzer",
@@ -28,7 +40,6 @@ local servers = {
     "ocamllsp", -- managed by ocaml.nvim
     "hls",
     "texlab",
-    "ty"
 }
 
 for _, server in ipairs(servers) do
