@@ -1,7 +1,3 @@
-(let ((opam-config-file (expand-file-name "opam-emacs.el" user-emacs-directory)))
-  (when (file-exists-p opam-config-file)
-    (load-file opam-config-file)))
-
 ;; Configure Flymake for verbose diagnostics
 (use-package flymake
   :ensure t
@@ -9,24 +5,6 @@
   :config
   (setq flymake-diagnostic-format-alist
         '((t . (origin code message)))))
-
-;; auto-load agda-mode for .agda and .lagda.md
-(setq auto-mode-alist
-   (append
-     '(("\\.agda\\'" . agda2-mode)
-       ("\\.lagda.md\\'" . agda2-mode))
-     auto-mode-alist))
-
-(defun flash-mode-line ()
-  (ding)
-  (let ((orig-bg (face-background 'mode-line)))
-    (set-face-background 'mode-line "#F2804F")
-    (run-with-idle-timer 0.1 nil
-                         (lambda (bg) (set-face-background 'mode-line bg))
-                         orig-bg)))
- (setq visible-bell nil
-      ring-bell-function #'flash-mode-line
-      )
 
 ;; Load opam config file
 (let ((opam-config-file (expand-file-name "opam-emacs.el" user-emacs-directory)))
