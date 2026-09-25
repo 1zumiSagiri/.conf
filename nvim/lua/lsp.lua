@@ -53,7 +53,11 @@ vim.lsp.config("tinymist", {
     cmd = { "tinymist" },
     filetypes = { "typst" },
     settings = {
-        formatterMode = "typstyle",
+        formatterMode = "typfmt",
+        exportPdf = "onType",
+        semanticTokens = "disable",
+        formatterPrintWidth = 80,
+        formatterIndentSize = 4,
     },
     capabilities = capabilities,
 })

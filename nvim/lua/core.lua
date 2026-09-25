@@ -9,6 +9,10 @@ vim.opt.termguicolors = true
 vim.opt.mouse = "a"
 vim.opt.ttimeoutlen = 0
 
+-- disable netrw for nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 vim.keymap.set("n", "<leader>f", function()
     local ft = vim.bo.filetype
 

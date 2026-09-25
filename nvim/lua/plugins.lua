@@ -54,6 +54,14 @@ vim.pack.add({
 
   -- Diagnostics
   "https://github.com/folke/trouble.nvim",
+
+  -- Fzf.nvim
+  'https://github.com/junegunn/fzf',
+  'https://github.com/junegunn/fzf.vim',
+
+  -- Typst & Mason.nvim
+  'https://github.com/mason-org/mason.nvim',
+  'https://github.com/chomosuke/typst-preview.nvim',
 })
 
 -- ===========================================================
@@ -62,6 +70,14 @@ vim.pack.add({
 
 -- Theme
 vim.cmd("colorscheme onedark")
+
+-- Typst
+require("mason").setup()
+require("typst-preview").setup()
+
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- Treesitter
 local ok, ts_configs = pcall(require, "nvim-treesitter.configs")
@@ -75,8 +91,7 @@ if ok then
   })
 end
 
--- File tree
-require("nvim-tree").setup({})
+require("nvim-tree").setup()
 vim.keymap.set("n", "<C-n>", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle File Tree" })
 
 require("lsp")
@@ -108,4 +123,3 @@ require("trouble").setup({
     },
   },
 })
-
