@@ -63,3 +63,13 @@ vim.lsp.config("tinymist", {
 })
 
 vim.lsp.enable("tinymist")
+
+vim.lsp.config("badness", {
+    cmd = { "badness", "lsp" },
+    filetypes = { "tex", "latex", "plaintex", "bib" },
+    root_markers = { "badness.toml", ".git" },
+    init_options = { lineWidth = 80, indentWidth = 2 },
+})
+
+vim.lsp.enable("badness")
+
